@@ -11,102 +11,114 @@
 
   <style>
     :root{
-      --bg:#fbf7f3;
-      --text:#2b2b2b;
-      --muted:#6b6b6b;
-      --line:rgba(0,0,0,.08);
-      --btn:#1f1f1f;
-      --btnText:#ffffff;
-      --shadow: 0 18px 45px rgba(0,0,0,.10);
-      --radius: 22px;
-    }
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    a{ color:inherit; text-decoration:none; }
+      /* Oceano pastello */
+      --bg1:#dff6ff;
+      --bg2:#e9fbf6;
+      --bg3:#f6fbff;
 
+      --text:#0b2233;
+      --muted:#2a6f86;
+      --line:rgba(11,34,51,.10);
+      --shadow: 0 18px 45px rgba(0,64,96,.14);
+      --radius: 22px;
+
+      --btn:#0b4d66;
+      --btnText:#ffffff;
+      --btn2:#ffffff;
+      --btn2Text:#0b4d66;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{
+      margin:0; padding:0;
+      font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+    }
+    a{ color:inherit; text-decoration:none; }
+    img{ max-width:100%; display:block; }
+
+    /* Opening invite */
     .gate{
       position:fixed; inset:0; z-index:50;
-      background: radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.65), rgba(251,247,243,1));
       display:flex; align-items:center; justify-content:center;
       padding:24px;
+      background:
+        radial-gradient(1200px 650px at 50% 18%, rgba(255,255,255,.75), rgba(223,246,255,.95));
     }
     .gate-card{
-      width:min(520px, 100%);
-      background: rgba(255,255,255,.65);
+      width:min(560px,100%);
+      background: rgba(255,255,255,.72);
       border:1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding:28px 22px;
+      padding:30px 22px;
       text-align:center;
       backdrop-filter: blur(10px);
     }
+    .kicker{
+      font-size:12px; letter-spacing:.26em; text-transform:uppercase;
+      color:var(--muted);
+    }
     .monogram{
-      width:74px; height:74px; margin:0 auto 14px auto;
+      width:78px; height:78px; margin:0 auto 14px auto;
       border-radius:999px;
       border:1px solid var(--line);
       display:flex; align-items:center; justify-content:center;
       font-family:"Playfair Display", serif;
       font-weight:700; font-size:22px;
       letter-spacing:.06em;
-      background: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.65);
+      color:var(--text);
     }
     .gate h1{
       font-family:"Playfair Display", serif;
-      margin:6px 0 6px 0;
-      font-size:40px;
+      margin:8px 0 6px 0;
+      font-size:42px;
       letter-spacing:.02em;
     }
     .gate p{ margin:6px 0; color:var(--muted); }
 
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      background:var(--btn); color:var(--btnText);
       border:0; border-radius:999px;
       padding:14px 20px;
       font-size:15px;
       cursor:pointer;
       margin-top:14px;
+      box-shadow: 0 10px 22px rgba(0,64,96,.12);
     }
-    .btn.secondary{
-      background:transparent;
-      color:var(--btn);
-      border:1px solid var(--line);
-    }
+    .btn.primary{ background:var(--btn); color:var(--btnText); }
+    .btn.secondary{ background:var(--btn2); color:var(--btn2Text); border:1px solid var(--line); box-shadow:none; }
 
-    .page{ opacity:0; transform: translateY(10px); transition: .6s ease; }
+    /* Page */
+    .page{ opacity:0; transform: translateY(10px); transition:.6s ease; }
     .page.show{ opacity:1; transform:none; }
 
     header{
-      padding:56px 18px 18px 18px;
       max-width:980px; margin:0 auto;
+      padding:56px 18px 10px 18px;
       text-align:center;
-    }
-    .topline{
-      font-size:13px; letter-spacing:.22em; text-transform:uppercase;
-      color:var(--muted);
     }
     header h2{
       font-family:"Playfair Display", serif;
-      font-size:54px;
+      font-size:56px;
       margin:10px 0 6px 0;
       letter-spacing:.02em;
     }
-    header .date{ color:var(--muted); font-size:16px; }
+    .date{ color:var(--muted); font-size:16px; }
 
     .countdown{
-      margin:20px auto 0 auto;
-      display:flex;
-      justify-content:center;
-      gap:10px;
-      flex-wrap:wrap;
+      margin:22px auto 0 auto;
+      display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
     }
     .pill{
-      background: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.72);
       border:1px solid var(--line);
       border-radius:999px;
       padding:10px 14px;
       min-width:120px;
-      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+      box-shadow: 0 8px 20px rgba(0,64,96,.10);
       backdrop-filter: blur(10px);
     }
     .pill b{ display:block; font-size:18px; }
@@ -114,17 +126,11 @@
 
     main{ max-width:980px; margin:0 auto; padding:14px 18px 70px 18px; }
 
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:14px;
-    }
-    @media (min-width: 860px){
-      .grid{ grid-template-columns: 1.2fr .8fr; }
-    }
+    .grid{ display:grid; grid-template-columns:1fr; gap:14px; }
+    @media (min-width: 860px){ .grid{ grid-template-columns:1.2fr .8fr; } }
 
     .card{
-      background: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.76);
       border:1px solid var(--line);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -138,57 +144,80 @@
     }
     .muted{ color:var(--muted); }
 
-    .divider{
-      height:1px;
-      background: var(--line);
-      margin:16px 0;
-    }
+    .divider{ height:1px; background:var(--line); margin:16px 0; }
 
-    .timeline{
-      display:grid;
-      gap:10px;
-      margin-top:10px;
+    /* Cover photo watercolor */
+    .cover{
+      margin-top:12px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      height:260px;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.35), rgba(11,34,51,.06)),
+        url("copertina.png") center/cover no-repeat;
     }
+    @media (min-width:860px){ .cover{ height:320px; } }
+
+    /* Timeline */
+    .timeline{ display:grid; gap:10px; margin-top:12px; }
     .slot{
-      display:flex; align-items:flex-start; justify-content:space-between;
-      gap:12px;
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
       padding:12px 14px;
       border:1px solid var(--line);
       border-radius:16px;
-      background: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.60);
     }
-    .slot .time{ font-weight:600; min-width:74px; }
-    .slot .what{ text-align:left; flex:1; }
+    .time{ font-weight:600; min-width:74px; }
+    .what{ text-align:left; flex:1; }
 
     .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
 
-    footer{
-      text-align:center;
-      color:var(--muted);
-      padding:26px 18px 50px 18px;
+    /* Gallery */
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
     }
+    .g{
+      border-radius:16px;
+      border:1px solid var(--line);
+      overflow:hidden;
+      aspect-ratio: 1/1;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.35), rgba(11,34,51,.06)),
+        center/cover no-repeat;
+      background-image: none;
+    }
+    .g.one{ background-image:url("foto1.png"); }
+    .g.two{ background-image:url("foto2.png"); }
+    .g.three{ background-image:url("foto3.png"); }
+
+    footer{ text-align:center; color:var(--muted); padding:24px 18px 50px 18px; }
   </style>
 </head>
 
 <body>
+  <!-- Opening invite -->
   <div class="gate" id="gate">
     <div class="gate-card">
       <div class="monogram">F<span style="opacity:.35;">&</span>M</div>
-      <div class="topline">INVITO</div>
+      <div class="kicker">INVITO</div>
       <h1>Flavia & Marco</h1>
       <p>3 Ottobre 2026</p>
       <p class="muted">Tocca per aprire</p>
-      <button class="btn" id="openBtn">Apri l’invito</button>
+      <button class="btn primary" id="openBtn">Apri l’invito</button>
     </div>
   </div>
 
   <div class="page" id="page">
     <header>
-      <div class="topline">CI SPOSIAMO</div>
+      <div class="kicker">CI SPOSIAMO</div>
       <h2>Flavia & Marco</h2>
       <div class="date">Sabato 3 Ottobre 2026</div>
 
-      <div class="countdown">
+      <div class="countdown" aria-label="countdown">
         <div class="pill"><b id="cdDays">—</b><span>Giorni</span></div>
         <div class="pill"><b id="cdHours">—</b><span>Ore</span></div>
         <div class="pill"><b id="cdMins">—</b><span>Minuti</span></div>
@@ -201,6 +230,8 @@
           <h3>Dettagli della giornata</h3>
           <p class="muted" style="margin-top:0;">Rito e ricevimento si terranno nello stesso luogo.</p>
 
+          <div class="cover" aria-label="Copertina acquerello"></div>
+
           <div class="timeline">
             <div class="slot">
               <div class="time">11:30</div>
@@ -209,6 +240,7 @@
                 <div class="muted">📍 Capo Santa Fortunata Realais</div>
               </div>
             </div>
+
             <div class="slot">
               <div class="time">13:00</div>
               <div class="what">
@@ -219,15 +251,13 @@
           </div>
 
           <div class="actions">
-            <a class="btn" href="https://share.google/bfNfPmuKu6Wmv7A2D" target="_blank" rel="noopener">Apri mappa</a>
-
-            <!-- INCOLLA QUI IL LINK DEL TUO GOOGLE MODULO -->
-            <a class="btn secondary" href="INCOLLA_LINK_GOOGLE_MODULO" target="_blank" rel="noopener">Conferma presenza (RSVP)</a>
+            <a class="btn primary" href="https://share.google/bfNfPmuKu6Wmv7A2D" target="_blank" rel="noopener">Apri mappa</a>
+            <a class="btn secondary" href="#foto">Foto</a>
           </div>
 
           <div class="divider"></div>
           <p class="muted" style="margin:0; font-size:13px;">
-            Suggerimento: nel modulo puoi chiedere anche numero invitati e intolleranze.
+            RSVP: lo aggiungiamo dopo con un bottone (Google Moduli).
           </p>
         </section>
 
@@ -248,6 +278,17 @@
           </p>
         </aside>
       </div>
+
+      <section class="card" id="foto" style="margin-top:14px;">
+        <h3>Foto</h3>
+        <p class="muted" style="margin-top:0;">Le vostre foto in stile acquerello.</p>
+
+        <div class="gallery" aria-label="galleria foto">
+          <div class="g one" title="Foto 1"></div>
+          <div class="g two" title="Foto 2"></div>
+          <div class="g three" title="Foto 3"></div>
+        </div>
+      </section>
     </main>
 
     <footer>
@@ -256,6 +297,7 @@
   </div>
 
   <script>
+    // Open invite
     const gate = document.getElementById('gate');
     const page = document.getElementById('page');
     document.getElementById('openBtn').addEventListener('click', () => {
@@ -264,6 +306,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // Countdown to ceremony start
     const target = new Date('2026-10-03T11:30:00');
     const cdDays = document.getElementById('cdDays');
     const cdHours = document.getElementById('cdHours');
@@ -273,7 +316,9 @@
       const now = new Date();
       const diff = target - now;
       if(diff <= 0){
-        cdDays.textContent = '0'; cdHours.textContent = '0'; cdMins.textContent = '0';
+        cdDays.textContent = '0';
+        cdHours.textContent = '0';
+        cdMins.textContent = '0';
         return;
       }
       const mins = Math.floor(diff / 60000);
