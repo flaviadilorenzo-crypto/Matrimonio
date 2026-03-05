@@ -1,407 +1,324 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Flavia & Marco — 3 Ottobre 2026</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flavia & Marco — 3 Ottobre 2026</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
-<style>
-  :root{
-    --bg1:#dff6ff; --bg2:#e9fbf6; --bg3:#f6fbff;
-    --text:#0b2233; --muted:#2a6f86; --line:rgba(11,34,51,.12);
-    --shadow: 0 20px 60px rgba(0,64,96,.18);
-    --radius: 22px;
-    --btn:#0b4d66; --btnText:#fff;
+  <style>
+    :root{
+      /* Oceano pastello */
+      --bg1:#dff6ff;
+      --bg2:#e9fbf6;
+      --bg3:#f6fbff;
 
-    /* Envelope pastel-ocean */
-    --env:#a6dbe8;
-    --env2:#8ecddb;
-    --paper:#ffffff;
-    --wax1:#7fc6da;
-    --wax2:#5aaec7;
-  }
+      --text:#061723;
+      --muted:#0b4d66;
+      --line:rgba(6,23,35,.14);
 
-  *{ box-sizing:border-box; }
-  html,body{
-    margin:0; padding:0;
-    font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
-    color:var(--text);
-    background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
-  }
-  a{ color:inherit; text-decoration:none; }
+      --shadow: 0 20px 70px rgba(0,64,96,.20);
+      --radius: 26px;
 
-  /* ---------- REALISTIC ENVELOPE GATE ---------- */
-  .gate{
-    position:fixed; inset:0; z-index:50;
-    display:flex; align-items:center; justify-content:center;
-    padding:24px;
-    background: radial-gradient(1200px 650px at 50% 18%, rgba(255,255,255,.80), rgba(223,246,255,.96));
-  }
+      /* Busta */
+      --env1:#a6dbe8;
+      --env2:#84c8db;
 
-  .invite-wrap{
-    width:min(520px, 100%);
-    text-align:center;
-  }
+      /* Ceralacca bianca */
+      --wax1:#ffffff;
+      --wax2:#f2f2f2;
+      --waxEdge:rgba(6,23,35,.10);
+      --waxText:#0b2233;
 
-  .title-top{
-    margin:0 0 14px 0;
-    color:var(--muted);
-    letter-spacing:.22em;
-    text-transform:uppercase;
-    font-size:12px;
-  }
+      --btn:#06384c;
+      --btnText:#fff;
+    }
 
-  .envelope{
-    width:min(520px, 92vw);
-    height:340px;
-    margin:0 auto;
-    position:relative;
-    filter: drop-shadow(0 26px 50px rgba(0,64,96,.20));
-    perspective: 1200px;
-  }
+    *{ box-sizing:border-box; }
+    html,body{
+      margin:0; padding:0;
+      font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color:var(--text);
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 45%, var(--bg3) 100%);
+    }
 
-  /* back plate */
-  .env-back{
-    position:absolute; inset:0;
-    border-radius:28px;
-    background: linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.25));
-    border:1px solid var(--line);
-  }
+    /* --------- GATE: solo busta + sigillo --------- */
+    .gate{
+      position:fixed; inset:0; z-index:50;
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+      background: radial-gradient(1200px 650px at 50% 18%, rgba(255,255,255,.86), rgba(223,246,255,.98));
+    }
 
-  /* paper */
-  .letter{
-    position:absolute;
-    left:18px; right:18px;
-    bottom:20px;
-    height:285px;
-    border-radius:22px;
-    background: rgba(255,255,255,.85);
-    border:1px solid var(--line);
-    box-shadow: 0 18px 40px rgba(0,64,96,.12);
-    transform: translateY(55px);
-    transition: transform 1000ms cubic-bezier(.2,.8,.2,1);
-    overflow:hidden;
-  }
-  .letter-inner{
-    padding:24px 18px;
-    height:100%;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    gap:6px;
-  }
-  .letter-inner h1{
-    font-family:"Playfair Display", serif;
-    margin:0;
-    font-size:44px;
-    letter-spacing:.02em;
-  }
-  .letter-inner p{ margin:0; color:var(--muted); }
-  .tap{
-    margin-top:10px;
-    font-size:13px;
-    color:var(--muted);
-  }
+    .envelope{
+      width:min(520px, 92vw);
+      height:350px;
+      position:relative;
+      filter: drop-shadow(0 28px 55px rgba(0,64,96,.22));
+      perspective: 1200px;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
 
-  /* envelope body */
-  .env-body{
-    position:absolute; inset:0;
-    border-radius:28px;
-    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.03));
-  }
+    /* base/back */
+    .env-back{
+      position:absolute; inset:0;
+      border-radius:28px;
+      background: rgba(255,255,255,.62);
+      border:1px solid var(--line);
+    }
 
-  /* bottom pocket */
-  .pocket{
-    position:absolute; inset:0;
-    border-radius:28px;
-    background: linear-gradient(180deg, var(--env), var(--env2));
-    border:1px solid rgba(11,34,51,.10);
-    clip-path: polygon(0 42%, 50% 76%, 100% 42%, 100% 100%, 0 100%);
-  }
-  /* side triangles to look realistic */
-  .pocket:before, .pocket:after{
-    content:"";
-    position:absolute; inset:0;
-    border-radius:28px;
-    background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(0,0,0,.06));
-    clip-path: polygon(0 42%, 50% 76%, 0 100%);
-    opacity:.55;
-  }
-  .pocket:after{
-    clip-path: polygon(100% 42%, 50% 76%, 100% 100%);
-    opacity:.40;
-  }
+    /* letter inside (only shown during open) */
+    .letter{
+      position:absolute;
+      left:18px; right:18px;
+      bottom:20px;
+      height:292px;
+      border-radius:22px;
+      background: rgba(255,255,255,.92);
+      border:1px solid var(--line);
+      box-shadow: 0 18px 40px rgba(0,64,96,.14);
+      transform: translateY(62px);
+      transition: transform 1000ms cubic-bezier(.2,.8,.2,1);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:22px;
+      text-align:center;
+    }
+    .letter h1{
+      font-family:"Playfair Display", serif;
+      margin:0 0 6px 0;
+      font-size:48px;
+      letter-spacing:.02em;
+      line-height:1.05;
+    }
+    .letter p{ margin:0; color:var(--muted); font-size:18px; font-weight:500; }
 
-  /* top flap (3D) */
-  .flap{
-    position:absolute; inset:0;
-    border-radius:28px;
-    background: linear-gradient(180deg, var(--env), var(--env2));
-    border:1px solid rgba(11,34,51,.10);
-    clip-path: polygon(0 42%, 50% 0, 100% 42%, 50% 76%);
-    transform-origin: 50% 42%;
-    transform: rotateX(0deg);
-    transition: transform 1000ms cubic-bezier(.2,.8,.2,1);
-    backface-visibility:hidden;
-  }
-  .flap:after{
-    content:"";
-    position:absolute; inset:0;
-    border-radius:28px;
-    background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.08));
-    opacity:.55;
-  }
+    /* pocket */
+    .pocket{
+      position:absolute; inset:0;
+      border-radius:28px;
+      background: linear-gradient(180deg, var(--env1), var(--env2));
+      border:1px solid var(--line);
+      clip-path: polygon(0 42%, 50% 76%, 100% 42%, 100% 100%, 0 100%);
+    }
+    .pocket:before, .pocket:after{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.14), rgba(0,0,0,.07));
+      opacity:.55;
+    }
+    .pocket:before{ clip-path: polygon(0 42%, 50% 76%, 0 100%); }
+    .pocket:after{ clip-path: polygon(100% 42%, 50% 76%, 100% 100%); opacity:.40; }
 
-  /* wax seal */
-  .seal{
-    position:absolute;
-    left:50%; top:58%;
-    transform: translate(-50%,-50%);
-    width:86px; height:86px;
-    border-radius:999px;
-    border:1px solid rgba(11,34,51,.10);
-    background:
-      radial-gradient(circle at 35% 30%, rgba(255,255,255,.8), rgba(255,255,255,0) 55%),
-      linear-gradient(135deg, var(--wax1), var(--wax2));
-    box-shadow: 0 16px 28px rgba(0,64,96,.20);
-    cursor:pointer;
-  }
-  .seal:after{
-    content:"F&M";
-    font-family:"Playfair Display", serif;
-    font-weight:700;
-    color: rgba(11,34,51,.70);
-    letter-spacing:.06em;
-    position:absolute; inset:0;
-    display:flex; align-items:center; justify-content:center;
-  }
+    /* flap (3D) */
+    .flap{
+      position:absolute; inset:0;
+      border-radius:28px;
+      background: linear-gradient(180deg, var(--env1), var(--env2));
+      border:1px solid var(--line);
+      clip-path: polygon(0 42%, 50% 0, 100% 42%, 50% 76%);
+      transform-origin: 50% 42%;
+      transform: rotateX(0deg);
+      transition: transform 1000ms cubic-bezier(.2,.8,.2,1);
+      backface-visibility:hidden;
+    }
+    .flap:after{
+      content:"";
+      position:absolute; inset:0;
+      border-radius:28px;
+      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.10));
+      opacity:.55;
+    }
 
-  /* OPEN state */
-  .envelope.open .flap{ transform: rotateX(165deg); }
-  .envelope.open .letter{ transform: translateY(-25px); }
+    /* white wax seal */
+    .seal{
+      position:absolute;
+      left:50%; top:58%;
+      transform: translate(-50%,-50%);
+      width:96px; height:96px;
+      border-radius:999px;
+      border:1px solid var(--waxEdge);
+      background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,.95), rgba(255,255,255,0) 55%),
+        linear-gradient(135deg, var(--wax1), var(--wax2));
+      box-shadow: 0 18px 32px rgba(0,64,96,.22);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
-  /* ---------- SITE PAGE ---------- */
-  .page{ display:none; }
-  .page.show{ display:block; }
+    /* “ceralacca” texture edges */
+    .seal:before{
+      content:"";
+      position:absolute; inset:-6px;
+      border-radius:999px;
+      background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0) 55%, rgba(0,0,0,.06) 75%, rgba(255,255,255,0) 100%);
+      opacity:.35;
+      pointer-events:none;
+    }
 
-  header{
-    max-width:980px; margin:0 auto;
-    padding:56px 18px 10px 18px;
-    text-align:center;
-  }
-  header h2{
-    font-family:"Playfair Display", serif;
-    font-size:56px;
-    margin:10px 0 6px 0;
-  }
-  .date{ color:var(--muted); font-size:16px; }
+    /* Elegant initials */
+    .seal span{
+      font-family:"Playfair Display", serif;
+      font-weight:700;
+      font-size:20px;
+      letter-spacing:.12em;
+      color:var(--waxText);
+      text-shadow: 0 1px 0 rgba(255,255,255,.7);
+    }
 
-  .countdown{
-    margin:22px auto 0 auto;
-    display:flex; justify-content:center; gap:10px; flex-wrap:wrap;
-  }
-  .pill{
-    background: rgba(255,255,255,.78);
-    border:1px solid var(--line);
-    border-radius:999px;
-    padding:10px 14px;
-    min-width:120px;
-    box-shadow: 0 10px 22px rgba(0,64,96,.10);
-    backdrop-filter: blur(10px);
-  }
-  .pill b{ display:block; font-size:18px; }
-  .pill span{ font-size:12px; color:var(--muted); }
+    /* helper text (small, minimal) */
+    .hint{
+      position:absolute;
+      left:50%;
+      top:calc(58% + 74px);
+      transform:translateX(-50%);
+      font-size:13px;
+      color:rgba(11,77,102,.85);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      user-select:none;
+      pointer-events:none;
+    }
 
-  main{ max-width:980px; margin:0 auto; padding:14px 18px 70px 18px; }
+    /* Open state */
+    .envelope.open .flap{ transform: rotateX(165deg); }
+    .envelope.open .letter{ transform: translateY(-25px); }
 
-  .grid{ display:grid; grid-template-columns:1fr; gap:14px; }
-  @media (min-width:860px){ .grid{ grid-template-columns:1.2fr .8fr; } }
+    /* --------- SITE CONTENT --------- */
+    .page{ display:none; }
+    .page.show{ display:block; }
 
-  .card{
-    background: rgba(255,255,255,.80);
-    border:1px solid var(--line);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    padding:22px;
-    backdrop-filter: blur(10px);
-  }
-  .card h3{
-    font-family:"Playfair Display", serif;
-    margin:0 0 10px 0;
-    font-size:26px;
-  }
-  .muted{ color:var(--muted); }
-  .divider{ height:1px; background:var(--line); margin:16px 0; }
+    header{
+      max-width:980px; margin:0 auto;
+      padding:56px 18px 10px 18px;
+      text-align:center;
+    }
+    header h2{
+      font-family:"Playfair Display", serif;
+      font-size:56px;
+      margin:10px 0 6px 0;
+      line-height:1.05;
+    }
+    .date{ color:var(--muted); font-size:18px; font-weight:500; }
 
-  .cover{
-    margin-top:12px;
-    border-radius:18px;
-    border:1px solid var(--line);
-    overflow:hidden;
-    height:320px;
-    background:
-      linear-gradient(120deg, rgba(255,255,255,.35), rgba(11,34,51,.06)),
-      url("copertina.png") center/cover no-repeat;
-  }
-  @media (min-width:860px){ .cover{ height:360px; } }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      border:0; border-radius:999px;
+      padding:12px 18px;
+      font-size:16px;
+      cursor:pointer;
+      background:var(--btn);
+      color:var(--btnText);
+      font-weight:500;
+      text-decoration:none;
+    }
 
-  .timeline{ display:grid; gap:10px; margin-top:12px; }
-  .slot{
-    display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
-    padding:12px 14px;
-    border:1px solid var(--line);
-    border-radius:16px;
-    background: rgba(255,255,255,.62);
-  }
-  .time{ font-weight:600; min-width:74px; }
-  .what{ text-align:left; flex:1; }
+    main{ max-width:980px; margin:0 auto; padding:14px 18px 70px 18px; }
 
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center;
-    border:0; border-radius:999px;
-    padding:12px 18px;
-    font-size:15px;
-    cursor:pointer;
-    background:var(--btn);
-    color:var(--btnText);
-  }
+    .card{
+      background: rgba(255,255,255,.90);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+    }
+    .card h3{
+      font-family:"Playfair Display", serif;
+      margin:0 0 10px 0;
+      font-size:28px;
+    }
+    .muted{ color:var(--muted); font-weight:500; }
 
-  .gallery{
-    display:grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap:10px;
-    margin-top:12px;
-  }
-  .g{
-    border-radius:16px;
-    border:1px solid var(--line);
-    overflow:hidden;
-    aspect-ratio: 1/1;
-    background:
-      linear-gradient(120deg, rgba(255,255,255,.35), rgba(11,34,51,.06)),
-      center/cover no-repeat;
-  }
-  .g.one{ background-image:url("foto1.png"); }
-  .g.two{ background-image:url("foto2.png"); }
-  .g.three{ background-image:url("foto3.png"); }
+    .timeline{ display:grid; gap:10px; margin-top:12px; }
+    .slot{
+      display:flex; gap:12px; align-items:flex-start; justify-content:space-between;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(255,255,255,.82);
+    }
+    .time{ font-weight:700; min-width:78px; font-size:16px; }
+    .what{ text-align:left; flex:1; }
 
-  footer{
-    text-align:center;
-    color:var(--muted);
-    padding:24px 18px 50px 18px;
-  }
-</style>
+    footer{
+      text-align:center;
+      color:var(--muted);
+      padding:24px 18px 50px 18px;
+      font-weight:500;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- Gate with envelope -->
+<!-- SOLO busta + sigillo -->
 <div class="gate" id="gate">
-  <div class="invite-wrap">
-    <div class="title-top">INVITO</div>
+  <div class="envelope" id="env" aria-label="Invito">
+    <div class="env-back"></div>
 
-    <div class="envelope" id="env">
-      <div class="env-back"></div>
-
-      <div class="letter">
-        <div class="letter-inner">
-          <h1>Flavia & Marco</h1>
-          <p>3 Ottobre 2026</p>
-          <div class="tap">Tocca il sigillo per aprire</div>
-        </div>
+    <div class="letter" aria-label="Lettera">
+      <div>
+        <h1>Flavia & Marco</h1>
+        <p>3 Ottobre 2026</p>
       </div>
-
-      <div class="env-body"></div>
-      <div class="pocket"></div>
-      <div class="flap"></div>
-
-      <button class="seal" id="openBtn" aria-label="Apri invito"></button>
     </div>
+
+    <div class="pocket"></div>
+    <div class="flap"></div>
+
+    <button class="seal" id="openBtn" aria-label="Apri invito">
+      <span>F&nbsp;&amp;&nbsp;M</span>
+    </button>
+
+    <div class="hint">tocca il sigillo</div>
   </div>
 </div>
 
-<!-- Site -->
+<!-- Contenuto del sito -->
 <div class="page" id="page">
   <header>
     <div style="letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-size:12px;">CI SPOSIAMO</div>
     <h2>Flavia & Marco</h2>
     <div class="date">Sabato 3 Ottobre 2026</div>
-
-    <div class="countdown">
-      <div class="pill"><b id="cdDays">—</b><span>Giorni</span></div>
-      <div class="pill"><b id="cdHours">—</b><span>Ore</span></div>
-      <div class="pill"><b id="cdMins">—</b><span>Minuti</span></div>
-    </div>
   </header>
 
   <main>
-    <div class="grid">
-      <section class="card">
-        <h3>Dettagli della giornata</h3>
-        <p class="muted" style="margin-top:0;">Rito e ricevimento si terranno nello stesso luogo.</p>
+    <section class="card">
+      <h3>Dettagli della giornata</h3>
+      <p class="muted" style="margin-top:0;">Rito e ricevimento si terranno nello stesso luogo.</p>
 
-        <div class="cover" aria-label="Copertina acquerello"></div>
-
-        <div class="timeline">
-          <div class="slot">
-            <div class="time">11:30</div>
-            <div class="what">
-              <div style="font-weight:600;">Rito</div>
-              <div class="muted">📍 Capo Santa Fortunata Realais</div>
-            </div>
-          </div>
-
-          <div class="slot">
-            <div class="time">13:00</div>
-            <div class="what">
-              <div style="font-weight:600;">Ricevimento</div>
-              <div class="muted">📍 Capo Santa Fortunata Realais</div>
-            </div>
+      <div class="timeline">
+        <div class="slot">
+          <div class="time">11:30</div>
+          <div class="what">
+            <div style="font-weight:700;">Rito</div>
+            <div class="muted">📍 Capo Santa Fortunata Realais</div>
           </div>
         </div>
 
-        <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
-          <a class="btn" href="https://share.google/bfNfPmuKu6Wmv7A2D" target="_blank" rel="noopener">Apri la mappa</a>
-          <a class="btn" href="#foto">Foto</a>
+        <div class="slot">
+          <div class="time">13:00</div>
+          <div class="what">
+            <div style="font-weight:700;">Ricevimento</div>
+            <div class="muted">📍 Capo Santa Fortunata Realais</div>
+          </div>
         </div>
-
-        <div class="divider"></div>
-        <p class="muted" style="margin:0; font-size:13px;">RSVP: lo aggiungiamo dopo.</p>
-      </section>
-
-      <aside class="card">
-        <h3>Un messaggio per voi</h3>
-        <p class="muted" style="margin-top:0;">Non vediamo l’ora di condividere con voi questo giorno speciale.</p>
-
-        <div class="divider"></div>
-
-        <h3 style="margin-top:0;">Info utili</h3>
-        <p class="muted" style="margin:0;">
-          Data: <b>3 Ottobre 2026</b><br/>
-          Rito: <b>11:30</b><br/>
-          Ricevimento: <b>13:00</b><br/>
-          Luogo: <b>Capo Santa Fortunata Realais</b>
-        </p>
-      </aside>
-    </div>
-
-    <section class="card" id="foto" style="margin-top:14px;">
-      <h3>Foto</h3>
-      <p class="muted" style="margin-top:0;">Le vostre foto in stile acquerello pastello.</p>
-
-      <div class="gallery">
-        <div class="g one" title="Foto 1"></div>
-        <div class="g two" title="Foto 2"></div>
-        <div class="g three" title="Foto 3"></div>
       </div>
 
-      <p class="muted" style="margin:12px 0 0 0; font-size:13px;">
-        Se non le vedi: controlla che i file si chiamino <b>copertina.png</b>, <b>foto1.png</b>, <b>foto2.png</b>, <b>foto3.png</b>.
-      </p>
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn" href="https://share.google/bfNfPmuKu6Wmv7A2D" target="_blank" rel="noopener">Apri la mappa</a>
+      </div>
+
+      <p class="muted" style="margin:14px 0 0 0; font-size:14px;">RSVP: lo aggiungiamo dopo.</p>
     </section>
   </main>
 
@@ -409,10 +326,10 @@
 </div>
 
 <script>
-  // Envelope open animation
+  // Open envelope
   const gate = document.getElementById('gate');
   const page = document.getElementById('page');
-  const env = document.getElementById('env');
+  const env  = document.getElementById('env');
 
   document.getElementById('openBtn').addEventListener('click', () => {
     env.classList.add('open');
@@ -422,34 +339,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 1000);
   });
-
-  // Countdown
-  const target = new Date('2026-10-03T11:30:00');
-  const cdDays = document.getElementById('cdDays');
-  const cdHours = document.getElementById('cdHours');
-  const cdMins = document.getElementById('cdMins');
-
-  function tick(){
-    const now = new Date();
-    const diff = target - now;
-
-    if(diff <= 0){
-      cdDays.textContent = '0';
-      cdHours.textContent = '0';
-      cdMins.textContent = '0';
-      return;
-    }
-    const mins = Math.floor(diff / 60000);
-    const days = Math.floor(mins / (60 * 24));
-    const hours = Math.floor((mins - days * 60 * 24) / 60);
-    const remMins = mins - days * 60 * 24 - hours * 60;
-
-    cdDays.textContent = String(days);
-    cdHours.textContent = String(hours);
-    cdMins.textContent = String(remMins);
-  }
-  tick();
-  setInterval(tick, 1000);
 </script>
 
 </body>
