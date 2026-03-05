@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il nostro matrimonio</title>
+
+<style>
+
+body{
+font-family: Arial;
+text-align:center;
+margin:0;
+}
+
+.hero{
+height:100vh;
+background:#f5e9e2;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+h1{
+font-size:40px;
+}
+
+section{
+padding:50px 20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="hero">
+
+<h1>Flavia & Marco</h1>
+
+<p>03 Ottobre 2026</p>
+
+<p>Non vediamo l'ora di festeggiare con voi</p>
+
+</div>
+
+<section>
+
+<h2>Cerimonia</h2>
+
+<p>
+Caposanta Fortunata<br>
+Ore 11:30
+</p>
+
+</section>
+
+<section>
+
+<h2>Ricevimento</h2>
+
+<p>
+Caposanta Fortunata<br>
+Ore 13:00
+</p>
+
+</section>
+
+<section>
+
+<h2>Conferma presenza</h2>
+
+<p>Scrivici su WhatsApp</p>
+
+</section>
+
+</body>
+</html>
