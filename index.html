@@ -1,177 +1,292 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flavia & Marco — 3 Ottobre 2026</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 
-<title>Flavia & Marco</title>
+  <style>
+    :root{
+      --bg:#fbf7f3;
+      --text:#2b2b2b;
+      --muted:#6b6b6b;
+      --line:rgba(0,0,0,.08);
+      --btn:#1f1f1f;
+      --btnText:#ffffff;
+      --shadow: 0 18px 45px rgba(0,0,0,.10);
+      --radius: 22px;
+    }
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; padding:0; background:var(--bg); color:var(--text); font-family:Poppins, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+    a{ color:inherit; text-decoration:none; }
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Poppins:wght@300&display=swap" rel="stylesheet">
+    .gate{
+      position:fixed; inset:0; z-index:50;
+      background: radial-gradient(1200px 600px at 50% 20%, rgba(255,255,255,.65), rgba(251,247,243,1));
+      display:flex; align-items:center; justify-content:center;
+      padding:24px;
+    }
+    .gate-card{
+      width:min(520px, 100%);
+      background: rgba(255,255,255,.65);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:28px 22px;
+      text-align:center;
+      backdrop-filter: blur(10px);
+    }
+    .monogram{
+      width:74px; height:74px; margin:0 auto 14px auto;
+      border-radius:999px;
+      border:1px solid var(--line);
+      display:flex; align-items:center; justify-content:center;
+      font-family:"Playfair Display", serif;
+      font-weight:700; font-size:22px;
+      letter-spacing:.06em;
+      background: rgba(255,255,255,.6);
+    }
+    .gate h1{
+      font-family:"Playfair Display", serif;
+      margin:6px 0 6px 0;
+      font-size:40px;
+      letter-spacing:.02em;
+    }
+    .gate p{ margin:6px 0; color:var(--muted); }
 
-<style>
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      background:var(--btn); color:var(--btnText);
+      border:0; border-radius:999px;
+      padding:14px 20px;
+      font-size:15px;
+      cursor:pointer;
+      margin-top:14px;
+    }
+    .btn.secondary{
+      background:transparent;
+      color:var(--btn);
+      border:1px solid var(--line);
+    }
 
-body{
-margin:0;
-font-family:Poppins;
-text-align:center;
-color:#444;
-}
+    .page{ opacity:0; transform: translateY(10px); transition: .6s ease; }
+    .page.show{ opacity:1; transform:none; }
 
-.hero{
-height:100vh;
-background:url("https://images.unsplash.com/photo-1519741497674-611481863552") center/cover;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-color:white;
-}
+    header{
+      padding:56px 18px 18px 18px;
+      max-width:980px; margin:0 auto;
+      text-align:center;
+    }
+    .topline{
+      font-size:13px; letter-spacing:.22em; text-transform:uppercase;
+      color:var(--muted);
+    }
+    header h2{
+      font-family:"Playfair Display", serif;
+      font-size:54px;
+      margin:10px 0 6px 0;
+      letter-spacing:.02em;
+    }
+    header .date{ color:var(--muted); font-size:16px; }
 
-.hero h1{
-font-family:Playfair Display;
-font-size:60px;
-margin:0;
-}
+    .countdown{
+      margin:20px auto 0 auto;
+      display:flex;
+      justify-content:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .pill{
+      background: rgba(255,255,255,.65);
+      border:1px solid var(--line);
+      border-radius:999px;
+      padding:10px 14px;
+      min-width:120px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.06);
+      backdrop-filter: blur(10px);
+    }
+    .pill b{ display:block; font-size:18px; }
+    .pill span{ font-size:12px; color:var(--muted); }
 
-.hero p{
-font-size:22px;
-}
+    main{ max-width:980px; margin:0 auto; padding:14px 18px 70px 18px; }
 
-button{
-padding:15px 30px;
-background:white;
-border:none;
-margin-top:20px;
-font-size:16px;
-cursor:pointer;
-}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:14px;
+    }
+    @media (min-width: 860px){
+      .grid{ grid-template-columns: 1.2fr .8fr; }
+    }
 
-section{
-padding:80px 20px;
-max-width:800px;
-margin:auto;
-}
+    .card{
+      background: rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+      backdrop-filter: blur(10px);
+    }
+    .card h3{
+      font-family:"Playfair Display", serif;
+      margin:0 0 10px 0;
+      font-size:26px;
+    }
+    .muted{ color:var(--muted); }
 
-.countdown{
-font-size:30px;
-margin-top:20px;
-}
+    .divider{
+      height:1px;
+      background: var(--line);
+      margin:16px 0;
+    }
 
-.event{
-background:#f8f6f4;
-}
+    .timeline{
+      display:grid;
+      gap:10px;
+      margin-top:10px;
+    }
+    .slot{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap:12px;
+      padding:12px 14px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background: rgba(255,255,255,.55);
+    }
+    .slot .time{ font-weight:600; min-width:74px; }
+    .slot .what{ text-align:left; flex:1; }
 
-.gallery img{
-width:30%;
-margin:10px;
-border-radius:10px;
-}
+    .actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
 
-footer{
-padding:40px;
-background:#eee;
-}
-
-</style>
-
+    footer{
+      text-align:center;
+      color:var(--muted);
+      padding:26px 18px 50px 18px;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="gate" id="gate">
+    <div class="gate-card">
+      <div class="monogram">F<span style="opacity:.35;">&</span>M</div>
+      <div class="topline">INVITO</div>
+      <h1>Flavia & Marco</h1>
+      <p>3 Ottobre 2026</p>
+      <p class="muted">Tocca per aprire</p>
+      <button class="btn" id="openBtn">Apri l’invito</button>
+    </div>
+  </div>
 
-<div class="hero">
+  <div class="page" id="page">
+    <header>
+      <div class="topline">CI SPOSIAMO</div>
+      <h2>Flavia & Marco</h2>
+      <div class="date">Sabato 3 Ottobre 2026</div>
 
-<h1>Flavia & Marco</h1>
+      <div class="countdown">
+        <div class="pill"><b id="cdDays">—</b><span>Giorni</span></div>
+        <div class="pill"><b id="cdHours">—</b><span>Ore</span></div>
+        <div class="pill"><b id="cdMins">—</b><span>Minuti</span></div>
+      </div>
+    </header>
 
-<p>3 Ottobre 2026</p>
+    <main>
+      <div class="grid">
+        <section class="card">
+          <h3>Dettagli della giornata</h3>
+          <p class="muted" style="margin-top:0;">Rito e ricevimento si terranno nello stesso luogo.</p>
 
-<div id="countdown" class="countdown"></div>
+          <div class="timeline">
+            <div class="slot">
+              <div class="time">11:30</div>
+              <div class="what">
+                <div style="font-weight:600;">Rito</div>
+                <div class="muted">📍 Capo Santa Fortunata Realais</div>
+              </div>
+            </div>
+            <div class="slot">
+              <div class="time">13:00</div>
+              <div class="what">
+                <div style="font-weight:600;">Ricevimento</div>
+                <div class="muted">📍 Capo Santa Fortunata Realais</div>
+              </div>
+            </div>
+          </div>
 
-<a href="#evento">
-<button>Scopri i dettagli</button>
-</a>
+          <div class="actions">
+            <a class="btn" href="https://share.google/bfNfPmuKu6Wmv7A2D" target="_blank" rel="noopener">Apri mappa</a>
 
-</div>
+            <!-- INCOLLA QUI IL LINK DEL TUO GOOGLE MODULO -->
+            <a class="btn secondary" href="INCOLLA_LINK_GOOGLE_MODULO" target="_blank" rel="noopener">Conferma presenza (RSVP)</a>
+          </div>
 
-<section>
+          <div class="divider"></div>
+          <p class="muted" style="margin:0; font-size:13px;">
+            Suggerimento: nel modulo puoi chiedere anche numero invitati e intolleranze.
+          </p>
+        </section>
 
-<h2>La nostra storia</h2>
+        <aside class="card">
+          <h3>Un messaggio per voi</h3>
+          <p class="muted" style="margin-top:0;">
+            Non vediamo l’ora di condividere con voi questo giorno speciale.
+          </p>
 
-<p>
-Dopo tanti momenti insieme abbiamo deciso di iniziare
-il capitolo più bello della nostra vita.
-Non vediamo l'ora di festeggiare con voi.
-</p>
+          <div class="divider"></div>
 
-</section>
+          <h3 style="margin-top:0;">Info utili</h3>
+          <p class="muted" style="margin:0;">
+            Data: <b>3 Ottobre 2026</b><br/>
+            Rito: <b>11:30</b><br/>
+            Ricevimento: <b>13:00</b><br/>
+            Luogo: <b>Capo Santa Fortunata Realais</b>
+          </p>
+        </aside>
+      </div>
+    </main>
 
-<section id="evento" class="event">
+    <footer>
+      Flavia & Marco — 3 Ottobre 2026
+    </footer>
+  </div>
 
-<h2>Il matrimonio</h2>
+  <script>
+    const gate = document.getElementById('gate');
+    const page = document.getElementById('page');
+    document.getElementById('openBtn').addEventListener('click', () => {
+      gate.style.display = 'none';
+      page.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-<p>
+    const target = new Date('2026-10-03T11:30:00');
+    const cdDays = document.getElementById('cdDays');
+    const cdHours = document.getElementById('cdHours');
+    const cdMins = document.getElementById('cdMins');
 
-<strong>Cerimonia</strong><br>
-Ore 11:30<br>
-(aggiungi qui la chiesa)
+    function tick(){
+      const now = new Date();
+      const diff = target - now;
+      if(diff <= 0){
+        cdDays.textContent = '0'; cdHours.textContent = '0'; cdMins.textContent = '0';
+        return;
+      }
+      const mins = Math.floor(diff / 60000);
+      const days = Math.floor(mins / (60 * 24));
+      const hours = Math.floor((mins - days * 60 * 24) / 60);
+      const remMins = mins - days * 60 * 24 - hours * 60;
 
-</p>
-
-<p>
-
-<strong>Ricevimento</strong><br>
-Ore 13:00<br>
-(aggiungi qui il ristorante)
-
-</p>
-
-</section>
-
-<section>
-
-<h2>I nostri momenti</h2>
-
-<div class="gallery">
-
-<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf">
-<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
-<img src="https://images.unsplash.com/photo-1509927083803-4bd519298ac4">
-
-</div>
-
-</section>
-
-<section>
-
-<h2>Conferma presenza</h2>
-
-<p>Scrivici su WhatsApp per confermare</p>
-
-</section>
-
-<footer>
-
-<p>Flavia & Marco – 3 Ottobre 2026</p>
-
-</footer>
-
-<script>
-
-var countDownDate = new Date("Oct 3, 2026 15:00:00").getTime();
-
-var x = setInterval(function() {
-
-var now = new Date().getTime();
-var distance = countDownDate - now;
-
-var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-
-document.getElementById("countdown").innerHTML =
-days + " giorni " + hours + " ore";
-
-}, 1000);
-
-</script>
-
+      cdDays.textContent = String(days);
+      cdHours.textContent = String(hours);
+      cdMins.textContent = String(remMins);
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
 </body>
 </html>
